@@ -1,4 +1,5 @@
-﻿using Db.Entity.Directory;
+﻿using System.Collections.Generic;
+using Db.Entity.Directory;
 
 namespace Db.Entity
 {
@@ -38,5 +39,15 @@ namespace Db.Entity
         /// Масса
         /// </summary>
         public virtual double Weight { get; set; }
+
+        /// <summary>
+        /// Типы материалов
+        /// </summary>
+        public virtual IList<MaterialType> MaterialTypes { get; set; }
+
+        /// <summary>
+        /// Интерфейсы
+        /// </summary>
+        public virtual IList<Interface> Interfaces { get; set; }
     }
 }
