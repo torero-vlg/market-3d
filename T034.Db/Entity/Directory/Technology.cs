@@ -3,7 +3,7 @@
     /// <summary>
     /// Технология печати
     /// </summary>
-    public class Technology
+    public class Technology : Entity
     {
         public virtual string Name { get; set; }
     }
