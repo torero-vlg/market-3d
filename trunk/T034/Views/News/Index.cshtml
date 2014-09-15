@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Db.Entity.News>
+
+@{
+    ViewBag.Title = "Новости";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    if (Request.Cookies["yandex_token"] != null)
+    {
+        if(Request.Cookies["yandex_token"].Value != "")
+        {
+            @Html.ActionLink("Добавить новость", "Add", "News")
+        }
+    }
+}
+<h2>Новости</h2>
+
+<div>
+@foreach (var item in Model)
+{
+    <div><h4>@Html.ActionLink(item.Title, "Single", new { newsId = item.Id })</h4></div>
+    <div><h6>@item.User.Name</h6></div>
+    <div>@item.Resume</div>
+    <div>@Html.ActionLink("Подробнее", "Single", new { newsId = item.Id })</div>
+    <hr />
+}
+</div>
+
+    
