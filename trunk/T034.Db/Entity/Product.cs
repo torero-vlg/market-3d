@@ -30,8 +30,8 @@ namespace Db.Entity
         public virtual string Description { get; set; }
 
         /// <summary>
-        /// Есть в наличии
+        /// Количество в наличии
         /// </summary>
-        public virtual bool IsAvailable { get; set; }
+        public virtual int Count { get; set; }
     }
 }
