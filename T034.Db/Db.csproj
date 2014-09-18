@@ -79,6 +79,7 @@
     <Compile Include="Mapping\NewsMap.cs" />
     <Compile Include="Mapping\MaterialMap.cs" />
     <Compile Include="Mapping\PrinterMap.cs" />
+    <Compile Include="Mapping\ProductMap.cs" />
     <Compile Include="Mapping\SubjectMap.cs" />
     <Compile Include="NhDbFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

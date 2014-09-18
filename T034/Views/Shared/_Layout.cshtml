@@ -14,11 +14,9 @@
             Html.RenderAction("Auth", "Home");
         }
         <ul class="nav nav-tabs">
-            <li>
-                @Html.ActionLink("Новости", "Index", "News")
-            </li>
-            <li><a href="#">Документы</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li>@Html.ActionLink("3D объекты", "SubjectList", "Product")</li>
+            <li>@Html.ActionLink("3D принтеры", "PrinterList", "Product")</li>
+            <li>@Html.ActionLink("Пластик", "MaterialList", "Product")</li>
         </ul>
         @RenderBody()
     </body>

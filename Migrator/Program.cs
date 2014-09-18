@@ -39,6 +39,11 @@ namespace Migrator
                                .Mappings(x => x.FluentMappings.AddFromAssemblyOf<NewsMap>())
                                .BuildConfiguration();
 
+            //очистим БД
+            //var t = new SchemaExport(cfg2);
+            //t.Execute(true, true, true);
+
+            ////обновим структуру
             var t = new SchemaUpdate(cfg2);
             t.Execute(true, true);
         }
