@@ -8,16 +8,16 @@ namespace Db.DataAccess
 {
     public class NhBaseDb : IBaseDb
     {
-        protected readonly ISessionFactory SessionFactory;
+        protected readonly ISessionFactory Factory;
 
         public NhBaseDb(ISessionFactory sessionFactory)
         {
-            SessionFactory = sessionFactory;
+            Factory = sessionFactory;
         }
 
         public T Get<T>(int id) where T : Entity.Entity
         {
-            using (var session = SessionFactory.OpenSession())
+            using (var session = Factory.OpenSession())
             {
                 try
                 {
@@ -35,7 +35,7 @@ namespace Db.DataAccess
         public List<T> Select<T>() where T : Entity.Entity
         {
             List<T> result;
-            using (var session = SessionFactory.OpenSession())
+            using (var session = Factory.OpenSession())
             {
                 try
                 {
@@ -58,7 +58,7 @@ namespace Db.DataAccess
         public List<T> Where<T>(Expression<Func<T, bool>> expression) where T : Entity.Entity
         {
             List<T> result;
-            using (var session = SessionFactory.OpenSession())
+            using (var session = Factory.OpenSession())
             {
                 try
                 {
@@ -80,7 +80,7 @@ namespace Db.DataAccess
         public T SingleOrDefault<T>(Expression<Func<T, bool>> expression) where T : Entity.Entity
         {
             T result;
-            using (var session = SessionFactory.OpenSession())
+            using (var session = Factory.OpenSession())
             {
                 try
                 {
@@ -100,7 +100,7 @@ namespace Db.DataAccess
         public int Save<T>(T entity) where T : Entity.Entity
         {
             int result;
-            using (var session = SessionFactory.OpenSession())
+            using (var session = Factory.OpenSession())
             {
                 using (var tran = session.BeginTransaction())
                 {
@@ -124,7 +124,7 @@ namespace Db.DataAccess
 
         public void Save<T>(List<T> list) where T : Entity.Entity
         {
-            using (var session = SessionFactory.OpenSession())
+            using (var session = Factory.OpenSession())
             {
                 using (var tran = session.BeginTransaction())
                 {
@@ -144,6 +144,11 @@ namespace Db.DataAccess
                     }
                 }
             }
+        }
+
+        public ISessionFactory SessionFactory
+        {
+            get { return Factory; }
         }
     }
 }

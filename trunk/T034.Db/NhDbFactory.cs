@@ -1,15 +1,11 @@
 ﻿using System;
-using System.IO;
 using Db.DataAccess;
-using Db.Entity;
 using Db.Mapping;
 using Db.Tools;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Context;
-using NHibernate.Tool.hbm2ddl;
 
 namespace Db
 {
@@ -22,6 +18,8 @@ namespace Db
 //            _sessionFactory = CreatePostgreSessionFactory(connectionString);
             _sessionFactory = CreateSqLiteSessionFactory(connectionString);
         }
+
+
 
         public override IBaseDb CreateBaseDb()
         {

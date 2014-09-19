@@ -39,6 +39,7 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="System.Data.SQLite, Version=1.0.93.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.93.0\lib\net40\System.Data.SQLite.dll</HintPath>
@@ -75,6 +76,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\MarketManager.cs" />
     <Compile Include="Models\TokenModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +97,56 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\AutoFill\css\dataTables.autoFill.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\AutoFill\css\dataTables.autoFill.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\AutoFill\images\filler.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\ColReorder\css\dataTables.colReorder.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\ColReorder\css\dataTables.colReorder.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\ColReorder\images\insert.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\ColVis\css\dataTables.colVis.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\ColVis\css\dataTables.colvis.jqueryui.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\ColVis\css\dataTables.colVis.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\FixedColumns\css\dataTables.fixedColumns.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\FixedColumns\css\dataTables.fixedColumns.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\FixedHeader\css\dataTables.fixedHeader.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\FixedHeader\css\dataTables.fixedHeader.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\KeyTable\css\dataTables.keyTable.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\KeyTable\css\dataTables.keyTable.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\Responsive\css\dataTables.responsive.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\Scroller\css\dataTables.scroller.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\Scroller\css\dataTables.scroller.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\Scroller\images\loading-background.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\css\dataTables.tableTools.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\css\dataTables.tableTools.min.css" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\background.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\collection.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\collection_hover.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\copy.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\copy_hover.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\csv.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\csv_hover.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\pdf.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\pdf_hover.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\print.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\print_hover.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\xls.png" />
+    <Content Include="Content\DataTables-1.10.2\extensions\TableTools\images\xls_hover.png" />
+    <Content Include="Content\DataTables-1.10.2\media\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables-1.10.2\media\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables-1.10.2\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables-1.10.2\media\css\jquery.dataTables_themeroller.min.css" />
+    <Content Include="Content\DataTables-1.10.2\media\images\back_disabled.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\back_enabled.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\back_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\favicon.ico" />
+    <Content Include="Content\DataTables-1.10.2\media\images\forward_disabled.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\forward_enabled.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\forward_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\sort_asc.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\sort_both.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\sort_desc.png" />
+    <Content Include="Content\DataTables-1.10.2\media\images\sort_desc_disabled.png" />
     <Content Include="Content\images\yandex_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -129,6 +182,37 @@
     <Content Include="README.jQuery.vsdoc.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\AutoFill\js\dataTables.autoFill.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\AutoFill\js\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\AutoFill\Readme.txt" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\ColReorder\js\dataTables.colReorder.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\ColReorder\js\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\ColReorder\Readme.txt" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\ColVis\js\dataTables.colVis.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\ColVis\js\dataTables.colVis.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\ColVis\Readme.txt" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\FixedColumns\js\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\FixedColumns\js\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\FixedColumns\Readme.txt" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\FixedHeader\js\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\FixedHeader\js\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\FixedHeader\Readme.txt" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\KeyTable\js\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\KeyTable\js\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\KeyTable\Readme.txt" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\Responsive\js\dataTables.responsive.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\Responsive\js\dataTables.responsive.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\Scroller\js\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\Scroller\js\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\Scroller\Readme.txt" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\TableTools\js\dataTables.tableTools.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\TableTools\js\dataTables.tableTools.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\TableTools\Readme.txt" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\TableTools\swf\copy_csv_xls.swf" />
+    <Content Include="Scripts\DataTables-1.10.2\extensions\TableTools\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Scripts\DataTables-1.10.2\media\js\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables-1.10.2\media\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables-1.10.2\media\js\jquery.js" />
     <Content Include="Scripts\jquery-1.9.0-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
@@ -175,10 +259,17 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\DataTables-1.10.2\extensions\Responsive\css\dataTables.responsive.scss" />
+    <None Include="Content\DataTables-1.10.2\extensions\TableTools\images\psd\collection.psd" />
+    <None Include="Content\DataTables-1.10.2\extensions\TableTools\images\psd\copy document.psd" />
+    <None Include="Content\DataTables-1.10.2\extensions\TableTools\images\psd\file_types.psd" />
+    <None Include="Content\DataTables-1.10.2\extensions\TableTools\images\psd\printer.psd" />
+    <None Include="Content\DataTables-1.10.2\media\images\Sorting icons.psd" />
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.svg" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Scripts\DataTables-1.10.2\extensions\Responsive\Readme.md" />
     <None Include="Scripts\jquery-1.9.0.min.map" />
     <Content Include="Views\Home\Sites.cshtml" />
     <Content Include="Views\News\Single.cshtml" />
@@ -186,6 +277,9 @@
     <Content Include="Views\News\Add.cshtml" />
     <Content Include="Views\Shared\AuthPartialView.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\Admin\SubjectList.cshtml" />
+    <Content Include="Views\Admin\AddSubject.cshtml" />
+    <Content Include="Views\Admin\Subject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\T034.Db\Db.csproj">
