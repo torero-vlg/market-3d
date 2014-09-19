@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using NHibernate;
 
 namespace Db.DataAccess
 {
@@ -12,5 +13,7 @@ namespace Db.DataAccess
         T SingleOrDefault<T>(Expression<Func<T, bool>> expression) where T : Entity.Entity;
         int Save<T>(T entity) where T : Entity.Entity;
         void Save<T>(List<T> list) where T : Entity.Entity;
+
+        ISessionFactory SessionFactory { get; }
     }
 }
