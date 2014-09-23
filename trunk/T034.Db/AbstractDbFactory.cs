@@ -12,5 +12,11 @@ namespace Db
         /// </summary>
         /// <returns></returns>
         public abstract IBaseDb CreateBaseDb();
+
+        /// <summary>
+        /// Создать менеджера магазина
+        /// </summary>
+        /// <returns></returns>
+        public abstract IMarketDb CreateMarketDb();
     }
 }
