@@ -57,6 +57,8 @@
     <Compile Include="DataAccess\NhBaseDb.cs" />
     <Compile Include="DataAccess\NhBaseMessageDb.cs" />
     <Compile Include="DataAccess\IBaseMessageDb.cs" />
+    <Compile Include="DataAccess\MarketDb.cs" />
+    <Compile Include="DataAccess\IMarketDb.cs" />
     <Compile Include="Entity\Administration\User.cs" />
     <Compile Include="Entity\Directory\Category.cs" />
     <Compile Include="Entity\Directory\Interface.cs" />

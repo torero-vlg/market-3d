@@ -26,6 +26,11 @@ namespace Db
             return new NhBaseMessageDb(_sessionFactory);
         }
 
+        public override IMarketDb CreateMarketDb()
+        {
+            return new MarketDb(_sessionFactory);
+        }
+
         private ISessionFactory CreatePostgreSessionFactory(string connectionString)
         {
             
