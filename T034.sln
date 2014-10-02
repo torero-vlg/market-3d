@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Db", "T034.Db\Db.csproj", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrator.Console", "Migrator\Migrator.Console.csproj", "{E7E034EB-AABD-42BF-BC17-BD65CE75AA4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Db.Test", "Db.Test\Db.Test.csproj", "{2AB6F43D-587A-4399-9536-94DA5FC03065}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{E7E034EB-AABD-42BF-BC17-BD65CE75AA4D}.Release|Mixed Platforms.Build.0 = Release|x86
 		{E7E034EB-AABD-42BF-BC17-BD65CE75AA4D}.Release|x86.ActiveCfg = Release|x86
 		{E7E034EB-AABD-42BF-BC17-BD65CE75AA4D}.Release|x86.Build.0 = Release|x86
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2AB6F43D-587A-4399-9536-94DA5FC03065}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

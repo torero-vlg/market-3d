@@ -45,8 +45,8 @@ namespace T034.Controllers
 
         public ActionResult Subject(int subjectid)
         {
-            //var subject = _marketDb.Get<Subject>(subjectid);
-            var subject = new Subject();
+            var subject = _marketDb.Get<Subject>(subjectid);
+            //var subject = new Subject();
             return View(subject);
         }
 
