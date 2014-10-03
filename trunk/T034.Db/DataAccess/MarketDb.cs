@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Db.Entity;
 using Db.Entity.Directory;
 using Db.Tools;
@@ -48,6 +49,54 @@ namespace Db.DataAccess
                 }
             }
             return result;
+        }
+
+        public int AddPrinter(Printer printer)
+        {
+            int result;
+            using (var session = Factory.OpenSession())
+            {
+                using (var tran = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Save(printer);
+
+                        tran.Commit();
+                        result = printer.Id;
+                    }
+                    catch (Exception ex)
+                    {
+                        MonitorLog.WriteLog("Ошибка выполнения процедуры AddPrinter : " + ex.Message, MonitorLog.typelog.Error, true);
+                        tran.Rollback();
+                        result = 0;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public void DeletePrinter(int id)
+        {
+            using (var session = Factory.OpenSession())
+            {
+                using (var tran = session.BeginTransaction())
+                {
+                    try
+                    {
+                        var item = session.Get<Printer>(id);
+                        session.Delete(item);
+
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        MonitorLog.WriteLog("Ошибка выполнения процедуры DeletePrinter : " + ex.Message, MonitorLog.typelog.Error, true);
+                        tran.Rollback();
+                    }
+                }
+
+            }
         }
     }
 }

@@ -3,11 +3,11 @@ using FluentNHibernate.Mapping;
 
 namespace Db.Mapping
 {
-    public class PrinterMap : ClassMap<Printer>
+    public class PrinterMap : SubclassMap<Printer>
     {
         public PrinterMap()
         {
-            Id(x => x.Id).Column("PrinterId").GeneratedBy.Assigned();
+            KeyColumn("PrinterId");
 
             Map(p => p.Area);
             Map(p => p.Diametr);
@@ -24,13 +24,13 @@ namespace Db.Mapping
                 .Table("PrinterMaterialType")
                 .ParentKeyColumn("PrinterId")
                 .ChildKeyColumn("MaterialTypeId");
-            
+
             HasManyToMany(x => x.Interfaces)
                 .Table("PrinterInterface")
                 .ParentKeyColumn("PrinterId")
                 .ChildKeyColumn("InterfaceId");
 
-            HasOne<Product>(x => x.Id);
+            //HasOne<Product>(x => x.Id);
         }
     }
 }
