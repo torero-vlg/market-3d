@@ -3,11 +3,11 @@ using FluentNHibernate.Mapping;
 
 namespace Db.Mapping
 {
-    public class MaterialMap : ClassMap<Material>
+    public class MaterialMap : SubclassMap<Material>
     {
         public MaterialMap()
         {
-            Id(x => x.Id).Column("MaterialId").GeneratedBy.Assigned();
+            KeyColumn("MaterialId");
 
             Map(p => p.Color);
             Map(p => p.Diametr);
@@ -16,7 +16,7 @@ namespace Db.Mapping
             References(p => p.MaterialType).Column("MaterialTypeId")
                 .Not.LazyLoad();
 
-            HasOne<Product>(x => x.Id);
+            //HasOne<Product>(x => x.Id);
         }
     }
 }
