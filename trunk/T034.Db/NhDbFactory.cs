@@ -6,6 +6,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Context;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Db
 {
@@ -19,6 +20,10 @@ namespace Db
             _sessionFactory = CreateSqLiteSessionFactory(connectionString);
         }
 
+        public NhDbFactory()
+        {
+            _sessionFactory = CreateSqLiteInMemorySessionFactory();
+        }
 
 
         public override IBaseDb CreateBaseDb()
@@ -74,5 +79,29 @@ namespace Db
                 return null;
             }
         }
+
+        public ISessionFactory CreateSqLiteInMemorySessionFactory() 
+        {
+            try
+            {
+                var fluentConfiguration = Fluently.Configure()
+                    .Database(SQLiteConfiguration.Standard.InMemory()
+                    .ConnectionString("Data Source=:memory:;Version=3;New=True;Pooling=True;Max Pool Size=1;"))
+                    .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(false, true, true))
+                    .Mappings(x => x.FluentMappings.AddFromAssemblyOf<NewsMap>());
+
+                var t = new SchemaExport(fluentConfiguration.BuildConfiguration());
+                t.Execute(true, true, true);
+
+                var factory = fluentConfiguration
+                    .BuildSessionFactory();
+
+                return factory;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        } 
     }
 }

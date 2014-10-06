@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using Db.Entity;
 using Db.Entity.Directory;
 using Db.Tools;

@@ -1,4 +1,5 @@
-﻿using Db.DataAccess;
+﻿using System;
+using Db.DataAccess;
 using Db.Entity;
 using Db.Entity.Directory;
 using NUnit.Framework;
@@ -12,22 +13,6 @@ namespace Db.Test
         public MarketDbTests()
         {
             _marketDb = DbFactory.CreateMarketDb();
-        }
-
-        [Test]
-        public void GetSunbjectTest()
-        {
-            var subject = _marketDb.Get<Product>(1);
-
-            Assert.IsNotNull(subject);
-        }
-
-        [Test]
-        public void GetPrinterTest()
-        {
-            var subject = _marketDb.Get<Printer>(2);
-
-            Assert.IsNotNull(subject);
         }
 
         [Test]
@@ -51,10 +36,63 @@ namespace Db.Test
                 };
 
             var id = _marketDb.AddPrinter(printer);
-
-            _marketDb.DeletePrinter(id);
-
             Assert.IsNotNull(id);
+
+            var result = _marketDb.Get<Printer>(1);
+
+            Assert.IsNotNull(result);
         }
+    }
+    public class BlogTestFixture : InMemoryDatabaseTest
+    {
+        public BlogTestFixture()
+            : base(typeof(Blog).Assembly)
+        {
+        }
+
+        [Test]
+        public void CanSaveAndLoadBlog()
+        {
+            object id;
+
+            using (var tx = session.BeginTransaction())
+            {
+                id = session.Save(new Blog
+                {
+                    AllowsComments = true,
+                    CreatedAt = new DateTime(2000, 1, 1),
+                    Subtitle = "Hello",
+                    Title = "World",
+                });
+
+                tx.Commit();
+            }
+
+            session.Clear();
+
+
+            using (var tx = session.BeginTransaction())
+            {
+                var blog = session.Get<Blog>(id);
+
+                Assert.AreEqual(new DateTime(2000, 1, 1), blog.CreatedAt);
+                Assert.AreEqual("Hello", blog.Subtitle);
+                Assert.AreEqual("World", blog.Title);
+                Assert.True(blog.AllowsComments);
+
+                tx.Commit();
+            }
+        }
+    }
+
+    public class Blog
+    {
+        public virtual object Subtitle{ get; set; }
+
+        public virtual bool AllowsComments { get; set; }
+
+        public virtual DateTime CreatedAt { get; set; }
+
+        public virtual string Title { get; set; }
     }
 }
