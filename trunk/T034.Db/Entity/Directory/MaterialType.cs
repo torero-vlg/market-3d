@@ -3,8 +3,7 @@
     /// <summary>
     /// Тип материала
     /// </summary>
-    public class MaterialType: Entity
+    public class MaterialType: DirectoryEntity
     {
-        public virtual string Name { get; set; }
     }
 }

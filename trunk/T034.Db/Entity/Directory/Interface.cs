@@ -3,8 +3,7 @@
     /// <summary>
     /// Интерфейс
     /// </summary>
-    public class Interface : Entity
+    public class Interface : DirectoryEntity
     {
-        public virtual string Name { get; set; }
     }
 }

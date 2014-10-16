@@ -6,6 +6,7 @@
 }
 
 <h2>3D объекты</h2>
+@Html.ActionLink("Добавить", "AddSubject")
 <table id="table_id" class="display">
     <thead>
         <tr>
@@ -19,7 +20,7 @@
     @foreach (var item in Model)
     {
     <tr>
-        <td>@item.Id</td>
+        <td>@Html.ActionLink(item.Id.ToString(), "Subject", new { id = item.Id }) </td>
         <td>@item.Article</td>
         <td>@item.Name</td>
         <td>@item.Price</td>

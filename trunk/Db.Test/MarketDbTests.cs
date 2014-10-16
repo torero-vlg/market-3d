@@ -38,61 +38,9 @@ namespace Db.Test
             var id = _marketDb.AddPrinter(printer);
             Assert.IsNotNull(id);
 
-            var result = _marketDb.Get<Printer>(1);
+            var result = _marketDb.Get<Printer>(id);
 
             Assert.IsNotNull(result);
         }
-    }
-    public class BlogTestFixture : InMemoryDatabaseTest
-    {
-        public BlogTestFixture()
-            : base(typeof(Blog).Assembly)
-        {
-        }
-
-        [Test]
-        public void CanSaveAndLoadBlog()
-        {
-            object id;
-
-            using (var tx = session.BeginTransaction())
-            {
-                id = session.Save(new Blog
-                {
-                    AllowsComments = true,
-                    CreatedAt = new DateTime(2000, 1, 1),
-                    Subtitle = "Hello",
-                    Title = "World",
-                });
-
-                tx.Commit();
-            }
-
-            session.Clear();
-
-
-            using (var tx = session.BeginTransaction())
-            {
-                var blog = session.Get<Blog>(id);
-
-                Assert.AreEqual(new DateTime(2000, 1, 1), blog.CreatedAt);
-                Assert.AreEqual("Hello", blog.Subtitle);
-                Assert.AreEqual("World", blog.Title);
-                Assert.True(blog.AllowsComments);
-
-                tx.Commit();
-            }
-        }
-    }
-
-    public class Blog
-    {
-        public virtual object Subtitle{ get; set; }
-
-        public virtual bool AllowsComments { get; set; }
-
-        public virtual DateTime CreatedAt { get; set; }
-
-        public virtual string Title { get; set; }
     }
 }

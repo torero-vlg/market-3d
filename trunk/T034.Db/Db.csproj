@@ -61,6 +61,7 @@
     <Compile Include="DataAccess\IMarketDb.cs" />
     <Compile Include="Entity\Administration\User.cs" />
     <Compile Include="Entity\Directory\Category.cs" />
+    <Compile Include="Entity\Directory\DirectoryEntity.cs" />
     <Compile Include="Entity\Directory\Interface.cs" />
     <Compile Include="Entity\Directory\MaterialType.cs" />
     <Compile Include="Entity\Directory\Purpose.cs" />

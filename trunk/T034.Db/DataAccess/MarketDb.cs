@@ -59,6 +59,18 @@ namespace Db.DataAccess
                 {
                     try
                     {
+                        var product = new Product
+                        {
+                            Article = printer.Article,
+                            Category = new Category { Id = printer.Category.Id },
+                            Count = printer.Count,
+                            Description = printer.Description,
+                            Name = printer.Name,
+                            Price = printer.Price
+                        };
+                        session.Save(product);
+
+                        printer.Id = product.Id;
                         session.Save(printer);
 
                         tran.Commit();
