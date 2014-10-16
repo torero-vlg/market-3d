@@ -86,15 +86,14 @@ namespace Db
             {
                 var fluentConfiguration = Fluently.Configure()
                     .Database(SQLiteConfiguration.Standard.InMemory()
-                    .ConnectionString("Data Source=:memory:;Version=3;New=True;Pooling=True;Max Pool Size=1;"))
-                    .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(false, true, true))
-                    .Mappings(x => x.FluentMappings.AddFromAssemblyOf<NewsMap>());
+                    .ConnectionString("data source=:memory:"))
+                    .Mappings(x => x.FluentMappings.AddFromAssemblyOf<ProductMap>());
 
-                var t = new SchemaExport(fluentConfiguration.BuildConfiguration());
-                t.Execute(true, true, true);
+                var cfg = fluentConfiguration.BuildConfiguration();
+                var t = new SchemaUpdate(cfg);
+                t.Execute(false,true);
 
-                var factory = fluentConfiguration
-                    .BuildSessionFactory();
+                var factory = cfg.BuildSessionFactory();
 
                 return factory;
             }

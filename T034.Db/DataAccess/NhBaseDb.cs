@@ -97,7 +97,7 @@ namespace Db.DataAccess
             return result;
         }
 
-        public int Save<T>(T entity) where T : Entity.Entity
+        public int SaveOrUpdate<T>(T entity) where T : Entity.Entity
         {
             int result;
             using (var session = Factory.OpenSession())
@@ -113,7 +113,7 @@ namespace Db.DataAccess
                     }
                     catch (Exception ex)
                     {
-                        MonitorLog.WriteLog("Ошибка выполнения процедуры Save<" + typeof(T) + "> : " + ex.Message, MonitorLog.typelog.Error, true);
+                        MonitorLog.WriteLog("Ошибка выполнения процедуры SaveOrUpdate<" + typeof(T) + "> : " + ex.Message, MonitorLog.typelog.Error, true);
                         tran.Rollback();
                         result = 0;
                     }
@@ -122,7 +122,7 @@ namespace Db.DataAccess
             return result;
         }
 
-        public void Save<T>(List<T> list) where T : Entity.Entity
+        public void SaveList<T>(List<T> list) where T : Entity.Entity
         {
             using (var session = Factory.OpenSession())
             {
@@ -139,11 +139,36 @@ namespace Db.DataAccess
                     }
                     catch (Exception ex)
                     {
-                        MonitorLog.WriteLog("Ошибка выполнения процедуры Save<" + typeof(T) + "> : " + ex.Message, MonitorLog.typelog.Error, true);
+                        MonitorLog.WriteLog("Ошибка выполнения процедуры SaveList<" + typeof(T) + "> : " + ex.Message, MonitorLog.typelog.Error, true);
                         tran.Rollback();
                     }
                 }
             }
+        }
+
+        public int Save<T>(T entity) where T : Entity.Entity
+        {
+            int result;
+            using (var session = Factory.OpenSession())
+            {
+                using (var tran = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Save(entity);
+
+                        tran.Commit();
+                        result = entity.Id;
+                    }
+                    catch (Exception ex)
+                    {
+                        MonitorLog.WriteLog("Ошибка выполнения процедуры Save<" + typeof(T) + "> : " + ex.Message, MonitorLog.typelog.Error, true);
+                        tran.Rollback();
+                        result = 0;
+                    }
+                }
+            }
+            return result;
         }
 
         public ISessionFactory SessionFactory

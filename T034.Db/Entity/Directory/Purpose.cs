@@ -3,8 +3,7 @@
     /// <summary>
     /// Назначение
     /// </summary>
-    public class Purpose : Entity
+    public class Purpose : DirectoryEntity
     {
-        public virtual string Name { get; set; }
     }
 }

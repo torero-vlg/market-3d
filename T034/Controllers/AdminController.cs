@@ -1,29 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Db.DataAccess;
 using Db.Entity;
 using Db.Entity.Directory;
 using T034.Models;
 using T034.Tools.FileUpload;
+using T034.ViewModel;
 
 namespace T034.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IMarketDb _marketDb;
+        private readonly IBaseDb _db;
 
         public AdminController()
         {
-            _marketDb = MvcApplication.DbFactory.CreateMarketDb();
+            _db = MvcApplication.DbFactory.CreateBaseDb();
         }
 
         public ActionResult SubjectList()
         {
-            var subjects = _marketDb.Select<Subject>();
+            var subjects = _db.Select<Subject>();
+            return View(subjects);
+        }
+
+        public ActionResult PrinterList()
+        {
+            var subjects = _db.Select<Printer>();
+            return View("PrinterList", subjects);
+        }
+
+        public ActionResult MaterialList()
+        {
+            var subjects = _db.Select<Material>();
             return View(subjects);
         }
 
@@ -34,19 +45,63 @@ namespace T034.Controllers
             return View();
         }
 
+        [HttpGet]
+        //[AuthorizeUser]
+        public ActionResult AddPrinter()
+        {
+            var model = new PrinterViewModel
+                {
+                    PurposeList = SelectListItems<Purpose>(),
+                    TechnologyList = SelectListItems<Technology>()
+                };
+            return View(model);
+        }
+
+        private IEnumerable<SelectListItem> SelectListItems<T>() where T : DirectoryEntity
+        {
+            var purposes = _db.Select<T>().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                });
+            return purposes;
+        }
+
+        [HttpGet]
+        //[AuthorizeUser]
+        public ActionResult AddMaterial()
+        {
+            return View();
+        }
+
         public ActionResult AddSubject(Subject subject)
         {
             subject.Category = new Category { Id = 2 };
-            var result = _marketDb.AddSubject(subject);
+            var result = _db.Save(subject);
 
-
-            return RedirectToAction("Subject", new {subjectId = result});
+            return RedirectToAction("Subject", new {id = result});
         }
 
-        public ActionResult Subject(int subjectid)
+        public ActionResult AddPrinter(PrinterViewModel subject)
         {
-            var subject = _marketDb.Get<Subject>(subjectid);
-            //var subject = new Subject();
+            subject.Category = new Category { Id = 1 };
+
+            var result = _db.Save(subject.ToModel());
+
+            return RedirectToAction("Printer", new { id = result });
+        }
+
+        public ActionResult AddMaterial(Subject subject)
+        {
+            subject.Category = new Category { Id = 3 };
+            var result = _db.Save(subject);
+
+            return RedirectToAction("Material", new { id = result });
+        }
+
+        public ActionResult Subject(int id)
+        {
+            var subject = _db.Get<Subject>(id);
             return View(subject);
         }
 
@@ -76,6 +131,18 @@ namespace T034.Controllers
                 return result;
             }
             return Json(r);
+        }
+
+        public ActionResult Material(int id)
+        {
+            var subject = _db.Get<Material>(id);
+            return View(subject);
+        }
+
+        public ActionResult Printer(int id)
+        {
+            var subject = _db.Get<Printer>(id);
+            return View(subject);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Db.Entity.Directory
 {
-    public class Category : Entity
+    public class Category : DirectoryEntity
     {
-        public virtual string Name { get; set; }
     }
 }
