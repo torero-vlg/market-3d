@@ -25,7 +25,7 @@
     $(function () {
         'use strict';
         // Change this to the location of your server-side upload handler:
-        var url = '@Model.Url';
+        var url = '@Url.Content(@Model.Url)';
         $('#fileupload').fileupload({
             url: url,
             dataType: 'json',
