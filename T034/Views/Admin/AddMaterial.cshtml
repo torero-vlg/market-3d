@@ -1,4 +1,4 @@
-﻿@model Db.Entity.Material
+﻿@model T034.ViewModel.MaterialViewModel
 
 @{
     ViewBag.Title = "Добавить пластик";
@@ -42,6 +42,11 @@
         <label class="control-label">Масса</label>
         <div>
             @Html.TextBoxFor(m => m.Weight)
+        </div>
+        
+        <label class="control-label">Тип материала</label>
+        <div>
+            @Html.DropDownListFor(model => model.MaterialType.Id, Model.MaterialTypeList, "Выбрать... ")
         </div>
     </div>
     <div class="form-actions">

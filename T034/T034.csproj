@@ -94,6 +94,7 @@
     <Compile Include="Tools\FileUpload\ViewDataUploadFilesResult.cs" />
     <Compile Include="Tools\HttpTools.cs" />
     <Compile Include="Tools\SerializeTools.cs" />
+    <Compile Include="ViewModel\MaterialViewModel.cs" />
     <Compile Include="ViewModel\PrinterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
