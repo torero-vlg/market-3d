@@ -71,7 +71,11 @@ namespace T034.Controllers
         //[AuthorizeUser]
         public ActionResult AddMaterial()
         {
-            return View();
+            var model = new MaterialViewModel
+            {
+                MaterialTypeList = SelectListItems<MaterialType>()
+            };
+            return View(model);
         }
 
         public ActionResult AddSubject(Subject subject)
@@ -91,10 +95,10 @@ namespace T034.Controllers
             return RedirectToAction("Printer", new { id = result });
         }
 
-        public ActionResult AddMaterial(Subject subject)
+        public ActionResult AddMaterial(MaterialViewModel subject)
         {
             subject.Category = new Category { Id = 3 };
-            var result = _db.Save(subject);
+            var result = _db.Save(subject.ToModel());
 
             return RedirectToAction("Material", new { id = result });
         }
