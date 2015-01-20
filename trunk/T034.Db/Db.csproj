@@ -57,33 +57,15 @@
     <Compile Include="DataAccess\NhBaseDb.cs" />
     <Compile Include="DataAccess\NhBaseMessageDb.cs" />
     <Compile Include="DataAccess\IBaseMessageDb.cs" />
-    <Compile Include="DataAccess\MarketDb.cs" />
-    <Compile Include="DataAccess\IMarketDb.cs" />
     <Compile Include="Entity\Administration\User.cs" />
-    <Compile Include="Entity\Directory\Category.cs" />
     <Compile Include="Entity\Directory\DirectoryEntity.cs" />
-    <Compile Include="Entity\Directory\Interface.cs" />
-    <Compile Include="Entity\Directory\MaterialType.cs" />
-    <Compile Include="Entity\Directory\Purpose.cs" />
-    <Compile Include="Entity\Directory\Technology.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\Finder\Finder.cs" />
-    <Compile Include="Entity\Material.cs" />
     <Compile Include="Entity\News.cs" />
-    <Compile Include="Entity\Printer.cs" />
-    <Compile Include="Entity\Product.cs" />
-    <Compile Include="Entity\Subject.cs" />
+    <Compile Include="Entity\Goods.cs" />
     <Compile Include="Mapping\Administration\UserMap.cs" />
-    <Compile Include="Mapping\Directory\CategoryMap.cs" />
-    <Compile Include="Mapping\Directory\InterfaceMap.cs" />
-    <Compile Include="Mapping\Directory\MaterialTypeMap.cs" />
-    <Compile Include="Mapping\Directory\PurposeMap.cs" />
-    <Compile Include="Mapping\Directory\TechnologyMap.cs" />
     <Compile Include="Mapping\NewsMap.cs" />
-    <Compile Include="Mapping\MaterialMap.cs" />
-    <Compile Include="Mapping\PrinterMap.cs" />
-    <Compile Include="Mapping\ProductMap.cs" />
-    <Compile Include="Mapping\SubjectMap.cs" />
+    <Compile Include="Mapping\GoodsMap.cs" />
     <Compile Include="NhDbFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\MonitorLog.cs" />
@@ -91,7 +73,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Mapping\Directory\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

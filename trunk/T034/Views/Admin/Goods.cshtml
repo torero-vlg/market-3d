@@ -1,5 +1,5 @@
 ﻿@using T034.Models
-@model Db.Entity.Subject
+@model Db.Entity.Goods
 
 @{
     ViewBag.Title = Model.Name;
@@ -8,12 +8,10 @@
 
 <h2>@Model.Name</h2>
 
-<div>@Model.Price</div>
-<div>@Model.Description</div>
 
 @Html.Partial("FileUploadPartialView", new FileUploadModel
     {
-        Url = "UploadFile", 
-        Category = "Subject", 
+        Url = "UploadFile",
+        Category = "Goods", 
         Id = Model.Id.ToString()
     })

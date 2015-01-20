@@ -31,11 +31,6 @@ namespace Db
             return new NhBaseMessageDb(_sessionFactory);
         }
 
-        public override IMarketDb CreateMarketDb()
-        {
-            return new MarketDb(_sessionFactory);
-        }
-
         private ISessionFactory CreatePostgreSessionFactory(string connectionString)
         {
             
@@ -87,7 +82,7 @@ namespace Db
                 var fluentConfiguration = Fluently.Configure()
                     .Database(SQLiteConfiguration.Standard.InMemory()
                     .ConnectionString("data source=:memory:"))
-                    .Mappings(x => x.FluentMappings.AddFromAssemblyOf<ProductMap>());
+                    .Mappings(x => x.FluentMappings.AddFromAssemblyOf<NewsMap>());
 
                 var cfg = fluentConfiguration.BuildConfiguration();
                 var t = new SchemaUpdate(cfg);

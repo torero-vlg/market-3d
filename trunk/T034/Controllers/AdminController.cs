@@ -7,7 +7,6 @@ using Db.Entity;
 using Db.Entity.Directory;
 using T034.Models;
 using T034.Tools.FileUpload;
-using T034.ViewModel;
 
 namespace T034.Controllers
 {
@@ -20,43 +19,24 @@ namespace T034.Controllers
             _db = MvcApplication.DbFactory.CreateBaseDb();
         }
 
-        public ActionResult SubjectList()
+        public ActionResult GoodsList()
         {
-            var subjects = _db.Select<Subject>();
-            return View(subjects);
-        }
-
-        public ActionResult PrinterList()
-        {
-            var subjects = _db.Select<Printer>();
-            return View("PrinterList", subjects);
-        }
-
-        public ActionResult MaterialList()
-        {
-            var subjects = _db.Select<Material>();
-            return View(subjects);
+            var items = _db.Select<Goods>();
+            return View(items);
         }
 
         [HttpGet]
         //[AuthorizeUser]
-        public ActionResult AddSubject()
+        public ActionResult AddGoods()
         {
             return View();
         }
 
-        [HttpGet]
-        //[AuthorizeUser]
-        public ActionResult AddPrinter()
-        {
-            var model = new PrinterViewModel
-                {
-                    PurposeList = SelectListItems<Purpose>(),
-                    TechnologyList = SelectListItems<Technology>()
-                };
-            return View(model);
-        }
-
+        /// <summary>
+        /// PurposeList = SelectListItems<Purpose>(), TechnologyList = SelectListItems<Technology>()
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         private IEnumerable<SelectListItem> SelectListItems<T>() where T : DirectoryEntity
         {
             var purposes = _db.Select<T>().Select(c => new SelectListItem
@@ -67,46 +47,18 @@ namespace T034.Controllers
             return purposes;
         }
 
-        [HttpGet]
-        //[AuthorizeUser]
-        public ActionResult AddMaterial()
+        public ActionResult AddGoods(Goods item)
         {
-            var model = new MaterialViewModel
-            {
-                MaterialTypeList = SelectListItems<MaterialType>()
-            };
-            return View(model);
+            var result = _db.Save(item);
+
+            return RedirectToAction("Goods", new {id = result});
         }
 
-        public ActionResult AddSubject(Subject subject)
+
+        public ActionResult Goods(int id)
         {
-            subject.Category = new Category { Id = 2 };
-            var result = _db.Save(subject);
-
-            return RedirectToAction("Subject", new {id = result});
-        }
-
-        public ActionResult AddPrinter(PrinterViewModel subject)
-        {
-            subject.Category = new Category { Id = 1 };
-
-            var result = _db.Save(subject.ToModel());
-
-            return RedirectToAction("Printer", new { id = result });
-        }
-
-        public ActionResult AddMaterial(MaterialViewModel subject)
-        {
-            subject.Category = new Category { Id = 3 };
-            var result = _db.Save(subject.ToModel());
-
-            return RedirectToAction("Material", new { id = result });
-        }
-
-        public ActionResult Subject(int id)
-        {
-            var subject = _db.Get<Subject>(id);
-            return View(subject);
+            var item = _db.Get<Goods>(id);
+            return View(item);
         }
 
         [HttpPost]
@@ -135,18 +87,6 @@ namespace T034.Controllers
                 return result;
             }
             return Json(r);
-        }
-
-        public ActionResult Material(int id)
-        {
-            var subject = _db.Get<Material>(id);
-            return View(subject);
-        }
-
-        public ActionResult Printer(int id)
-        {
-            var subject = _db.Get<Printer>(id);
-            return View(subject);
         }
     }
 }

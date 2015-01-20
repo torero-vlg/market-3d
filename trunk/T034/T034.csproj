@@ -81,7 +81,6 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -94,8 +93,6 @@
     <Compile Include="Tools\FileUpload\ViewDataUploadFilesResult.cs" />
     <Compile Include="Tools\HttpTools.cs" />
     <Compile Include="Tools\SerializeTools.cs" />
-    <Compile Include="ViewModel\MaterialViewModel.cs" />
-    <Compile Include="ViewModel\PrinterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -310,7 +307,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Printer\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -337,17 +334,11 @@
     <Content Include="Views\News\Add.cshtml" />
     <Content Include="Views\Shared\AuthPartialView.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
-    <Content Include="Views\Admin\SubjectList.cshtml" />
-    <Content Include="Views\Admin\AddSubject.cshtml" />
-    <Content Include="Views\Admin\Subject.cshtml" />
+    <Content Include="Views\Admin\GoodsList.cshtml" />
+    <Content Include="Views\Admin\AddGoods.cshtml" />
+    <Content Include="Views\Admin\Goods.cshtml" />
     <Content Include="Views\Shared\FileUploadPartialView.cshtml" />
     <Content Include="Views\Shared\AdminMenu.cshtml" />
-    <Content Include="Views\Admin\PrinterList.cshtml" />
-    <Content Include="Views\Admin\MaterialList.cshtml" />
-    <Content Include="Views\Admin\AddPrinter.cshtml" />
-    <Content Include="Views\Admin\AddMaterial.cshtml" />
-    <Content Include="Views\Admin\Material.cshtml" />
-    <Content Include="Views\Admin\Printer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\T034.Db\Db.csproj">
