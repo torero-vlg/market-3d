@@ -1,29 +1,25 @@
-﻿@model List<Db.Entity.Subject>
+﻿@model List<Db.Entity.Goods>
 
 @{
     ViewBag.Title = "3D объекты";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>3D объекты</h2>
-@Html.ActionLink("Добавить", "AddSubject")
+<h2>Товары</h2>
+@Html.ActionLink("Добавить", "AddGoods")
 <table id="table_id" class="display">
     <thead>
         <tr>
             <th>Код</th>
-            <th>Артукул</th>
-            <th>Название</th>
-            <th>Цена</th>
+            <th>Товар</th>
         </tr>
     </thead>
     <tbody>
     @foreach (var item in Model)
     {
     <tr>
-        <td>@Html.ActionLink(item.Id.ToString(), "Subject", new { id = item.Id }) </td>
-        <td>@item.Article</td>
+        <td>@Html.ActionLink(item.Id.ToString(), "Goods", new { id = item.Id }) </td>
         <td>@item.Name</td>
-        <td>@item.Price</td>
     </tr>
     }
     </tbody>
