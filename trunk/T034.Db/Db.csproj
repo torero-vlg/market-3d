@@ -61,11 +61,13 @@
     <Compile Include="Entity\Directory\DirectoryEntity.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\Finder\Finder.cs" />
+    <Compile Include="Entity\GoodsDetail.cs" />
     <Compile Include="Entity\News.cs" />
     <Compile Include="Entity\Goods.cs" />
     <Compile Include="Mapping\Administration\UserMap.cs" />
     <Compile Include="Mapping\NewsMap.cs" />
     <Compile Include="Mapping\GoodsMap.cs" />
+    <Compile Include="Mapping\GoodsDetailMap.cs" />
     <Compile Include="NhDbFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\MonitorLog.cs" />

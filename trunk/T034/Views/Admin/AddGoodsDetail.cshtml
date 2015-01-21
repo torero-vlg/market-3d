@@ -1,0 +1,23 @@
+﻿@model Db.Entity.GoodsDetail
+
+@{
+    ViewBag.Title = "Добавить атрибут товара";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddGoodsDetail", "Admin"))
+{
+    <legend>Добавить атрибут товара</legend>
+    <div class="control-group warning">
+        <label class="control-label">Название</label>
+        <div>
+            @Html.HiddenFor(m => m.Goods.Id)
+            @Html.TextBoxFor(m => m.Name, new Dictionary<string, object> { { "class", "input-xxlarge" } })
+        </div>
+
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        <button type="button" class="btn">Отмена</button>
+    </div>
+}

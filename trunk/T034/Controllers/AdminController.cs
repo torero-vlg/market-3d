@@ -32,6 +32,13 @@ namespace T034.Controllers
             return View();
         }
 
+        [HttpGet]
+        //[AuthorizeUser]
+        public ActionResult AddGoodsDetail(int goodsId)
+        {
+            return View(new GoodsDetail { Goods = new Goods { Id = goodsId } });
+        }
+
         /// <summary>
         /// PurposeList = SelectListItems<Purpose>(), TechnologyList = SelectListItems<Technology>()
         /// </summary>
@@ -52,6 +59,13 @@ namespace T034.Controllers
             var result = _db.Save(item);
 
             return RedirectToAction("Goods", new {id = result});
+        }
+
+        public ActionResult AddGoodsDetail(GoodsDetail item)
+        {
+            var result = _db.Save(item);
+
+            return RedirectToAction("Goods", new { id = item.Goods.Id });
         }
 
 
