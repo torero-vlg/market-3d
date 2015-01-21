@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Migrator.Model;
 
 namespace Migrator
@@ -7,6 +8,15 @@ namespace Migrator
     {
         static void Main(string[] args)
         {
+            if (args.Any(a => a == "help" || a == "?"))
+            {
+                Console.WriteLine("Пример параметров:");
+                Console.WriteLine("-task update -dll Db.dll");
+                Console.WriteLine("-task clear -dll Db.dll");
+                return;
+            }
+
+
             try
             {
                 var setting = new Setting();
@@ -23,8 +33,6 @@ namespace Migrator
             {
                 Console.WriteLine("Ошибка при выполнении операции.");
             }
-
-            Console.ReadLine();
         }
     }
 }

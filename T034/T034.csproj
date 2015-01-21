@@ -339,6 +339,7 @@
     <Content Include="Views\Admin\Goods.cshtml" />
     <Content Include="Views\Shared\FileUploadPartialView.cshtml" />
     <Content Include="Views\Shared\AdminMenu.cshtml" />
+    <Content Include="Views\Admin\AddGoodsDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\T034.Db\Db.csproj">

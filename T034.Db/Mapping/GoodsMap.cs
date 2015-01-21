@@ -10,6 +10,8 @@ namespace Db.Mapping
             Id(x => x.Id).Column("GoodsId").GeneratedBy.Increment();
 
             Map(p => p.Name);
+
+            HasMany(x => x.Details).KeyColumn("GoodsId").Not.LazyLoad();
         }
     }
 }
