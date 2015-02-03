@@ -16,9 +16,10 @@ namespace T034.Controllers
 
         public ActionResult Auth()
         {
-            var model = YandexAuth.GetUser(Request);
+            var yandex = YandexAuth.GetUser(Request);
+            var mail = MailAuth.GetUser(Request);
 
-            return PartialView("AuthPartialView", model);
+            return PartialView("AuthPartialView", mail);
         }
     }
 }
