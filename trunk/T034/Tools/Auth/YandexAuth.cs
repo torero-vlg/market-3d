@@ -35,16 +35,16 @@ namespace T034.Tools.Auth
             return userCookie;
         }
 
-        public static UserModel GetUser(HttpRequestBase request)
+        public static YandexUserModel GetUser(HttpRequestBase request)
         {
-            var model = new UserModel{IsAutharization = false};
+            var model = new YandexUserModel{IsAutharization = false};
             try
             {
                 var userCookie = request.Cookies["yandex_token"];
                 if (userCookie != null)
                 {
                     var stream = HttpTools.PostStream(InfoUrl, string.Format("oauth_token={0}", userCookie.Value));
-                    model = SerializeTools.Deserialize<UserModel>(stream);
+                    model = SerializeTools.Deserialize<YandexUserModel>(stream);
                     model.IsAutharization = true;
                 }
             }
