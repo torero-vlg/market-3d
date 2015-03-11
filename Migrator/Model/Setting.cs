@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 
 namespace Migrator.Model
@@ -18,12 +19,16 @@ namespace Migrator.Model
                         case "-dll":
                             SetAssembly(args[i + 1]);
                             break;
+                        case "-db":
+                            SetDbPath(args[i + 1]);
+                            break;
                     }
             }
         }
 
         public Task Task { get; set; }
         public Assembly Assembly { get; set; }
+        public string DbPath { get; set; }
 
         private void SetTask(string packType)
         {
@@ -41,6 +46,11 @@ namespace Migrator.Model
         private void SetAssembly(string path)
         {
             Assembly = Assembly.LoadFrom(path);
+        }
+
+        private void SetDbPath(string path)
+        {
+            DbPath = path;
         }
     }
 }

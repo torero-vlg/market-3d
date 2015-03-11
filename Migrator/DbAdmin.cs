@@ -10,7 +10,7 @@ namespace Migrator
     {
         public static void UpdateDb(Setting setting)
         {
-            var str = string.Format("Data Source=t034.sqlite;Version=3;");
+            var str = string.Format("Data Source={0};Version=3;", setting.DbPath);
             var cfg2 = Fluently.Configure()
                                .Database(SQLiteConfiguration.Standard.ConnectionString(str))
                                .ExposeConfiguration(c => c.Properties.Add("current_session_context_class",
@@ -26,7 +26,7 @@ namespace Migrator
 
         public static void ClearDb(Setting setting)
         {
-            var str = string.Format("Data Source=t034.sqlite;Version=3;");
+            var str = string.Format("Data Source={0};Version=3;", setting.DbPath);
             var cfg2 = Fluently.Configure()
                                .Database(SQLiteConfiguration.Standard.ConnectionString(str))
                                .ExposeConfiguration(c => c.Properties.Add("current_session_context_class",

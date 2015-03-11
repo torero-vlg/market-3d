@@ -16,12 +16,19 @@ namespace Migrator
                 return;
             }
 
+            var setting = new Setting();
 
             try
             {
-                var setting = new Setting();
                 setting.Parse(args);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ошибка при чтении параметров.\r\n" + ex);
+            }
 
+            try
+            {
                 if(setting.Task == Task.Clear)
                     DbAdmin.ClearDb(setting);
                 if (setting.Task == Task.Update)
@@ -31,7 +38,7 @@ namespace Migrator
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка при выполнении операции.");
+                Console.WriteLine("Ошибка при выполнении операции.\r\n" + ex);
             }
         }
     }
