@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Migrator.Model;
 
 namespace Migrator
@@ -39,6 +40,15 @@ namespace Migrator
             catch (Exception ex)
             {
                 Console.WriteLine("Ошибка при выполнении операции.\r\n" + ex);
+                Console.WriteLine("InnerException:\r\n" + ex.InnerException);
+                if(ex.InnerException is ReflectionTypeLoadException)
+                {
+                    Console.WriteLine("ReflectionTypeLoadException:");
+                    foreach (var loaderEx in (ex.InnerException as ReflectionTypeLoadException).LoaderExceptions)
+                    {
+                        Console.WriteLine(loaderEx.Message);
+                    }
+                }
             }
         }
     }
