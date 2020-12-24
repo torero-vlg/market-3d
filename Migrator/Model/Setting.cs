@@ -30,6 +30,10 @@ namespace Migrator.Model
         public Assembly Assembly { get; set; }
         public string DbPath { get; set; }
 
+        public override string ToString()
+        {
+            return $"{nameof(Task)}: '{Task}'; {nameof(Assembly)}: '{Assembly}'; {nameof(DbPath)}: '{DbPath}'; ";
+        }
         private void SetTask(string packType)
         {
             switch (packType)

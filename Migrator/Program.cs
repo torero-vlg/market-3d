@@ -9,6 +9,8 @@ namespace Migrator
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             if (args.Any(a => a == "help" || a == "?"))
             {
                 Console.WriteLine("Пример параметров:");
@@ -22,6 +24,7 @@ namespace Migrator
             try
             {
                 setting.Parse(args);
+                Console.WriteLine($"{setting}");
             }
             catch (Exception ex)
             {

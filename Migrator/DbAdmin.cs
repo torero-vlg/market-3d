@@ -3,6 +3,7 @@ using FluentNHibernate.Cfg.Db;
 using Migrator.Model;
 using NHibernate.Context;
 using NHibernate.Tool.hbm2ddl;
+using System;
 
 namespace Migrator
 {
@@ -10,6 +11,8 @@ namespace Migrator
     {
         public static void UpdateDb(Setting setting)
         {
+            Console.WriteLine($"UpdateDb: '{setting.DbPath}'");
+
             var str = string.Format("Data Source={0};Version=3;", setting.DbPath);
             var cfg2 = Fluently.Configure()
                                .Database(SQLiteConfiguration.Standard.ConnectionString(str))
@@ -26,6 +29,8 @@ namespace Migrator
 
         public static void ClearDb(Setting setting)
         {
+            Console.WriteLine($"ClearDb: '{setting.DbPath}'");
+
             var str = string.Format("Data Source={0};Version=3;", setting.DbPath);
             var cfg2 = Fluently.Configure()
                                .Database(SQLiteConfiguration.Standard.ConnectionString(str))
