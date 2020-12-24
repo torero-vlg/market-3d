@@ -10,3 +10,9 @@ Migrator/obj
 Migrator/bin
 Db.Test/bin
 Db.Test/obj
+/Db.Test/bin
+/Db.Test/obj
+/Migrator/bin
+/Migrator/obj
+/.vs
+T034/T034.csproj.user
